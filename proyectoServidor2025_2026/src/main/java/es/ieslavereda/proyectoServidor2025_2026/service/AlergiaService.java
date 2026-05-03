@@ -28,8 +28,15 @@ public class AlergiaService {
         return alergiaRepository.save(alergia);
     }
 
+    public Optional<Alergia> update(Long id, Alergia alergiaDetails) {
+        return alergiaRepository.findById(id).map(existing -> {
+            existing.setNombre(alergiaDetails.getNombre());
+
+            return alergiaRepository.save(existing);
+        });
+    }
+
     public void delete(Long id) {
         alergiaRepository.deleteById(id);
     }
 }
-

@@ -2,10 +2,12 @@ package es.ieslavereda.proyectoServidor2025_2026.controller;
 
 import es.ieslavereda.proyectoServidor2025_2026.repository.model.Alergia;
 import es.ieslavereda.proyectoServidor2025_2026.service.AlergiaService;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/alergias")
@@ -30,24 +32,24 @@ public class AlergiaController {
     }
 
     @PostMapping
-    public Alergia create(@RequestBody Alergia alergia) {
-        return alergiaService.save(alergia);
+    public ResponseEntity<Alergia> create(@RequestBody Alergia alergia) {
+        // Devolvemos 201 Created para creaciones exitosas
+        return new ResponseEntity<>(alergiaService.save(alergia), HttpStatus.CREATED);
     }
 
     @PutMapping("/{id}")
     public ResponseEntity<Alergia> update(@PathVariable Long id, @RequestBody Alergia alergia) {
-        return alergiaService.getById(id)
-                .map(existing -> {
-                    existing.setNombre(alergia.getNombre());
-                    return ResponseEntity.ok(alergiaService.save(existing));
-                })
+        Optional<Alergia> updated = alergiaService.update(id, alergia);
+        return updated.map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> delete(@PathVariable Long id) {
-        alergiaService.delete(id);
-        return ResponseEntity.noContent().build();
+        if (alergiaService.getById(id).isPresent()) {
+            alergiaService.delete(id);
+            return ResponseEntity.noContent().build();
+        }
+        return ResponseEntity.notFound().build();
     }
 }
-

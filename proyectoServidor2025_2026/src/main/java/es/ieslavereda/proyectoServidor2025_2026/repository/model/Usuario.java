@@ -1,5 +1,8 @@
 package es.ieslavereda.proyectoServidor2025_2026.repository.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -8,10 +11,12 @@ import java.util.List;
 
 @Entity
 @Table(name = "usuarios")
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
+@ToString(exclude = {"alergias", "favoritos", "listaCompra"})
 public class Usuario {
 
     @Id
@@ -24,10 +29,15 @@ public class Usuario {
     private String email;
 
     @Column(nullable = false)
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private String passwordHash;
 
     private LocalDateTime fechaRegistro;
 
+    @PrePersist // Se ejecuta automáticamente antes de insertar en la DB
+    protected void onCreate() {
+        fechaRegistro = LocalDateTime.now();
+    }
 
     @ManyToMany
     @JoinTable(
@@ -35,13 +45,14 @@ public class Usuario {
             joinColumns = @JoinColumn(name = "usuario_id"),
             inverseJoinColumns = @JoinColumn(name = "alergia_id")
     )
+    @JsonIgnoreProperties("usuarios") // ESTO: Evita que al cargar el usuario, las alergias intenten cargar sus usuarios de nuevo
     private List<Alergia> alergias;
 
-
     @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL)
+    @JsonIgnore
     private List<Favorito> favoritos;
 
-
     @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL)
+    @JsonIgnore
     private List<ListaCompra> listaCompra;
 }

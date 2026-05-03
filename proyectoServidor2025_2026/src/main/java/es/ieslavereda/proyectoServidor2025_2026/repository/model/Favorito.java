@@ -5,11 +5,13 @@ import lombok.*;
 
 @Entity
 @Table(name = "favoritos")
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-@IdClass(FavoritoId.class) // Clave compuesta usuario + receta
+@IdClass(FavoritoId.class)
+@ToString(exclude = {"usuario", "receta"}) // Evita bucles infinitos
 public class Favorito {
 
     @Id

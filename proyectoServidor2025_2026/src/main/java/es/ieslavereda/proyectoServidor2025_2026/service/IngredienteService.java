@@ -3,6 +3,7 @@ package es.ieslavereda.proyectoServidor2025_2026.service;
 import es.ieslavereda.proyectoServidor2025_2026.repository.IngredienteRepository;
 import es.ieslavereda.proyectoServidor2025_2026.repository.model.Ingrediente;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
@@ -16,30 +17,34 @@ public class IngredienteService {
         this.ingredienteRepository = ingredienteRepository;
     }
 
+    @Transactional(readOnly = true)
     public List<Ingrediente> getAll() {
         return ingredienteRepository.findAll();
     }
 
+    @Transactional(readOnly = true)
     public Optional<Ingrediente> getById(Long id) {
         return ingredienteRepository.findById(id);
     }
 
+    @Transactional
     public Ingrediente create(Ingrediente ingrediente) {
         return ingredienteRepository.save(ingrediente);
     }
 
+    @Transactional
     public Optional<Ingrediente> update(Long id, Ingrediente ingrediente) {
-        return ingredienteRepository.findById(id).map(i -> {
-            i.setNombre(ingrediente.getNombre());
-            return ingredienteRepository.save(i);
+        return ingredienteRepository.findById(id).map(existing -> {
+            existing.setNombre(ingrediente.getNombre());
+            return ingredienteRepository.save(existing);
         });
     }
 
+    @Transactional
     public boolean delete(Long id) {
-        if (ingredienteRepository.existsById(id)) {
-            ingredienteRepository.deleteById(id);
+        return ingredienteRepository.findById(id).map(ingrediente -> {
+            ingredienteRepository.delete(ingrediente);
             return true;
-        }
-        return false;
+        }).orElse(false);
     }
 }

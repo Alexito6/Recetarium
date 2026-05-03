@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="tvRegisterTitle" type="id" />
+    <item name="btnBack" type="id" />
+    <item name="tvRegisterSubtitle" type="id" />
+    <item name="tilFullName" type="id" />
+    <item name="etFullName" type="id" />
+    <item name="tilRegisterEmail" type="id" />
+    <item name="etRegisterEmail" type="id" />
+    <item name="tilRegisterPassword" type="id" />
+    <item name="etRegisterPassword" type="id" />
+    <item name="tilConfirmPassword" type="id" />
+    <item name="etConfirmPassword" type="id" />
+    <item name="btnSignUp" type="id" />
+    <item name="tvBackToLogin" type="id" />
+</resources>

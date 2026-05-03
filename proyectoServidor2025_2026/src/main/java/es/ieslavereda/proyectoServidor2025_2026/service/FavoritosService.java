@@ -4,9 +4,11 @@ import es.ieslavereda.proyectoServidor2025_2026.repository.FavoritoRepository;
 import es.ieslavereda.proyectoServidor2025_2026.repository.RecetaRepository;
 import es.ieslavereda.proyectoServidor2025_2026.repository.UsuarioRepository;
 import es.ieslavereda.proyectoServidor2025_2026.repository.model.Favorito;
+import es.ieslavereda.proyectoServidor2025_2026.repository.model.FavoritoId;
 import es.ieslavereda.proyectoServidor2025_2026.repository.model.Receta;
 import es.ieslavereda.proyectoServidor2025_2026.repository.model.Usuario;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -25,7 +27,13 @@ public class FavoritosService {
         this.recetaRepository = recetaRepository;
     }
 
+    @Transactional
     public void addFavorito(Long usuarioId, Long recetaId) {
+
+        if (favoritoRepository.existsById(new FavoritoId(usuarioId, recetaId))) {
+            return;
+        }
+
         Usuario usuario = usuarioRepository.findById(usuarioId)
                 .orElseThrow(() -> new RuntimeException("Usuario no encontrado"));
         Receta receta = recetaRepository.findById(recetaId)
@@ -39,18 +47,24 @@ public class FavoritosService {
         favoritoRepository.save(favorito);
     }
 
+    @Transactional
     public void removeFavorito(Long usuarioId, Long recetaId) {
-        Usuario usuario = usuarioRepository.findById(usuarioId)
-                .orElseThrow(() -> new RuntimeException("Usuario no encontrado"));
-        Receta receta = recetaRepository.findById(recetaId)
-                .orElseThrow(() -> new RuntimeException("Receta no encontrada"));
+        FavoritoId id = new FavoritoId(usuarioId, recetaId);
 
-        favoritoRepository.deleteByUsuarioAndReceta(usuario, receta);
+
+        if (!favoritoRepository.existsById(id)) {
+            throw new RuntimeException("El favorito no existe");
+        }
+
+
+        favoritoRepository.deleteById(id);
     }
 
+    @Transactional(readOnly = true)
     public List<Favorito> getFavoritosByUsuario(Long usuarioId) {
         Usuario usuario = usuarioRepository.findById(usuarioId)
                 .orElseThrow(() -> new RuntimeException("Usuario no encontrado"));
+
         return favoritoRepository.findByUsuario(usuario);
     }
 }

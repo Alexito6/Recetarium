@@ -6,7 +6,7 @@ import lombok.Getter;
 public class MyDataSource {
 
     private static final String DB_URL =
-            "jdbc:mysql://localhost:3307/db_recetarium?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC";
+            "jdbc:mysql://localhost:3307/db_recetarium";
     private static final String DB_USER = "root";
     private static final String DB_PASS = "1234";
 

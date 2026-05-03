@@ -3,14 +3,17 @@ package es.ieslavereda.proyectoServidor2025_2026.repository.model;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
 @Table(name = "recetas")
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
+@ToString(exclude = "ingredientes")
 public class Receta {
 
     @Id
@@ -27,13 +30,12 @@ public class Receta {
 
     private String imagenUrl;
 
-    // Ingredientes de la receta
     @ManyToMany
     @JoinTable(
             name = "recetas_ingredientes",
             joinColumns = @JoinColumn(name = "receta_id"),
             inverseJoinColumns = @JoinColumn(name = "ingrediente_id")
     )
-    private List<Ingrediente> ingredientes;
+    @Builder.Default // Para que el builder no deje la lista en null
+    private List<Ingrediente> ingredientes = new ArrayList<>();
 }
-
