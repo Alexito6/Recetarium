@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="24dp"
-    >
+    android:background="#F9F7F2"> <!-- Fondo crema orgánico -->
 
     <ImageButton
         android:id="@+id/btnBack"
@@ -17,7 +17,7 @@
         android:src="@android:drawable/ic_menu_revert"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:tint="@color/black" />
+        app:tint="#2D1B08" /> <!-- Marrón oscuro para iconos -->
 
     <TextView
         android:id="@+id/tvRegisterTitle"
@@ -25,7 +25,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
         android:text="Crear Cuenta"
-        android:textColor="@color/black"
+        android:textColor="#2D1B08"
         android:textSize="28sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
@@ -36,6 +36,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Únete a la comunidad de Recetarium"
+        android:textColor="#5D4037"
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvRegisterTitle" />
@@ -47,16 +48,20 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
         android:hint="Nombre completo"
+        app:boxStrokeColor="#A0522D"
+        app:hintTextColor="#A0522D"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvRegisterSubtitle"
-        app:startIconDrawable="@android:drawable/ic_menu_myplaces">
+        app:startIconDrawable="@android:drawable/ic_menu_myplaces"
+        app:startIconTint="#A0522D">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/etFullName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="textPersonName" />
+            android:inputType="textPersonName"
+            android:textColor="#2D1B08" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -66,16 +71,20 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:hint="Correo electrónico"
+        app:boxStrokeColor="#A0522D"
+        app:hintTextColor="#A0522D"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tilFullName"
-        app:startIconDrawable="@android:drawable/ic_dialog_email">
+        app:startIconDrawable="@android:drawable/ic_dialog_email"
+        app:startIconTint="#A0522D">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/etRegisterEmail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="textEmailAddress" />
+            android:inputType="textEmailAddress"
+            android:textColor="#2D1B08" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -85,17 +94,22 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:hint="Contraseña"
+        app:boxStrokeColor="#A0522D"
+        app:hintTextColor="#A0522D"
         app:endIconMode="password_toggle"
+        app:endIconTint="#A0522D"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tilRegisterEmail"
-        app:startIconDrawable="@android:drawable/ic_lock_idle_lock">
+        app:startIconDrawable="@android:drawable/ic_lock_idle_lock"
+        app:startIconTint="#A0522D">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/etRegisterPassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="textPassword" />
+            android:inputType="textPassword"
+            android:textColor="#2D1B08" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -105,17 +119,22 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:hint="Confirmar contraseña"
+        app:boxStrokeColor="#A0522D"
+        app:hintTextColor="#A0522D"
         app:endIconMode="password_toggle"
+        app:endIconTint="#A0522D"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tilRegisterPassword"
-        app:startIconDrawable="@android:drawable/ic_lock_idle_lock">
+        app:startIconDrawable="@android:drawable/ic_lock_idle_lock"
+        app:startIconTint="#A0522D">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/etConfirmPassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="textPassword" />
+            android:inputType="textPassword"
+            android:textColor="#2D1B08" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.button.MaterialButton
@@ -125,7 +144,8 @@
         android:layout_marginTop="32dp"
         android:text="Registrarse"
         android:textSize="16sp"
-        app:cornerRadius="12dp"
+        android:backgroundTint="#A0522D"
+        app:cornerRadius="24dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tilConfirmPassword" />
@@ -142,14 +162,15 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="¿Ya tienes cuenta? " />
+            android:text="¿Ya tienes cuenta? "
+            android:textColor="#5D4037" />
 
         <TextView
             android:id="@+id/tvBackToLogin"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Inicia sesión"
-            android:textColor="?attr/colorPrimary"
+            android:textColor="#A0522D"
             android:textStyle="bold" />
     </LinearLayout>
 

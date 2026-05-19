@@ -33,24 +33,36 @@ public class UsuarioService {
     }
 
     @Transactional
-    public Optional<Usuario> update(Long id, Usuario usuario) {
+    public Optional<Usuario> update(Long id, Usuario usuarioData) {
         return usuarioRepository.findById(id).map(u -> {
-            u.setNombre(usuario.getNombre());
-            u.setEmail(usuario.getEmail());
-            // Solo actualizar password si viene en la petición
-            if (usuario.getPasswordHash() != null) {
-                u.setPasswordHash(usuario.getPasswordHash());
+
+            u.setNombre(usuarioData.getNombre());
+            u.setEmail(usuarioData.getEmail());
+
+            if (usuarioData.getPasswordHash() != null) {
+                u.setPasswordHash(usuarioData.getPasswordHash());
             }
+
+            u.getAlergias().clear();
+
+            if (usuarioData.getAlergias() != null) {
+                u.getAlergias().addAll(usuarioData.getAlergias());
+            }
+
             return usuarioRepository.save(u);
         });
     }
 
+    @Transactional(readOnly = true)
     public Optional<Usuario> getByEmail(String email) {
         return usuarioRepository.findByEmail(email);
     }
+
+    @Transactional(readOnly = true)
     public Optional<Usuario> getByIdentifier(String identifier) {
         return usuarioRepository.findByEmailOrNombre(identifier, identifier);
     }
+
     @Transactional
     public boolean delete(Long id) {
         if(usuarioRepository.existsById(id)) {

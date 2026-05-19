@@ -124,6 +124,7 @@ public class MainActivity extends BaseActivity {
                 params.put("identifier", identifier);
                 params.put("password", password);
 
+                // Llamada al endpoint que configuramos en Spring Boot
                 return Connector.getConector().postWithParams(Usuario.class, params, "api/usuarios/login");
             }
 
@@ -131,7 +132,13 @@ public class MainActivity extends BaseActivity {
             public void doInUI(Usuario data) {
                 if (data != null) {
                     Toast.makeText(MainActivity.this, "¡Bienvenido " + data.getNombre() + "!", Toast.LENGTH_SHORT).show();
-                    Log.d(TAG, "Login correcto: " + data.getEmail());
+
+                    Intent intent = new Intent(MainActivity.this, HomeActivity.class);
+                    intent.putExtra("usuarioLogueado", data);
+                    startActivity(intent);
+
+                    // Finalizamos el Login para que no puedan volver atrás con el botón del móvil
+                    finish();
                 }
             }
 
@@ -141,7 +148,6 @@ public class MainActivity extends BaseActivity {
             }
         });
     }
-
     /**
      * Copia res/raw/prueba.jpg a un archivo real accesible por Retrofit
      */

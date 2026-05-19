@@ -1,10 +1,11 @@
 package es.ieslavereda.proyectoServidor2025_2026.repository.model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import lombok.*;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.LinkedHashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "recetas")
@@ -28,7 +29,16 @@ public class Receta {
     @Column(columnDefinition = "TEXT")
     private String instrucciones;
 
+    @Column(name = "imagen_url")
+    @JsonProperty("imagen_url")
     private String imagenUrl;
+
+    @Transient
+    private boolean isFavorito;
+
+    private int dificultad;
+
+    private int duracion;
 
     @ManyToMany
     @JoinTable(
@@ -36,6 +46,6 @@ public class Receta {
             joinColumns = @JoinColumn(name = "receta_id"),
             inverseJoinColumns = @JoinColumn(name = "ingrediente_id")
     )
-    @Builder.Default // Para que el builder no deje la lista en null
-    private List<Ingrediente> ingredientes = new ArrayList<>();
+    @Builder.Default
+    private Set<Ingrediente> ingredientes = new LinkedHashSet<>();
 }

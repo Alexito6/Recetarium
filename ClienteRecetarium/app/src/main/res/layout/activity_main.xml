@@ -5,16 +5,17 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#F9F7F2"
     android:padding="24dp"
     tools:context=".MainActivity">
 
     <ImageView
         android:id="@+id/imgLogo"
-        android:layout_width="120dp"
-        android:layout_height="120dp"
-        android:layout_marginTop="60dp"
-        android:contentDescription="Logo del recetario"
-        android:src="@drawable/ic_launcher_foreground"
+        android:layout_width="180dp"
+        android:layout_height="180dp"
+        android:layout_marginTop="40dp"
+        android:contentDescription="Logo de Recetarium"
+        android:src="@drawable/logo_recetarium"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -23,10 +24,10 @@
         android:id="@+id/tvTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="8dp"
         android:text="Recetarium"
-        android:textColor="@color/black"
-        android:textSize="28sp"
+        android:textColor="#2D1B08"
+        android:textSize="32sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -37,6 +38,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Tu asistente culinario inteligente"
+        android:textColor="#5D4037"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -49,6 +51,13 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
         android:hint="Correo o Usuario"
+        app:boxStrokeColor="#A0522D"
+        app:hintTextColor="#A0522D"
+        app:startIconTint="#A0522D"
+        app:boxCornerRadiusBottomEnd="16dp"
+        app:boxCornerRadiusBottomStart="16dp"
+        app:boxCornerRadiusTopEnd="16dp"
+        app:boxCornerRadiusTopStart="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvSubtitle"
@@ -58,7 +67,9 @@
             android:id="@+id/etEmail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="textEmailAddress" />
+            android:inputType="textEmailAddress"
+            android:textColor="#2D1B08"
+            android:textColorHint="#795548" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -68,7 +79,15 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:hint="Contraseña"
+        app:boxStrokeColor="#A0522D"
+        app:hintTextColor="#A0522D"
+        app:startIconTint="#A0522D"
+        app:endIconTint="#795548"
         app:endIconMode="password_toggle"
+        app:boxCornerRadiusBottomEnd="16dp"
+        app:boxCornerRadiusBottomStart="16dp"
+        app:boxCornerRadiusTopEnd="16dp"
+        app:boxCornerRadiusTopStart="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tilEmail"
@@ -78,16 +97,18 @@
             android:id="@+id/etPassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="textPassword" />
+            android:inputType="textPassword"
+            android:textColor="#2D1B08"
+            android:textColorHint="#795548" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <TextView
         android:id="@+id/tvForgotPassword"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="12dp"
         android:text="¿Olvidaste tu contraseña?"
-        android:textColor="?attr/colorPrimary"
+        android:textColor="#A0522D"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tilPassword" />
@@ -97,9 +118,13 @@
         android:layout_width="0dp"
         android:layout_height="60dp"
         android:layout_marginTop="32dp"
+        android:backgroundTint="#A0522D"
         android:text="Iniciar Sesión"
-        android:textSize="16sp"
-        app:cornerRadius="12dp"
+        android:textAllCaps="false"
+        android:textColor="#FFFFFF"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:cornerRadius="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvForgotPassword" />
@@ -107,7 +132,7 @@
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="32dp"
+        android:layout_marginBottom="16dp"
         android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -116,14 +141,15 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="¿No tienes cuenta? " />
+            android:text="¿No tienes cuenta? "
+            android:textColor="#5D4037" />
 
         <TextView
             android:id="@+id/tvSignUp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Regístrate"
-            android:textColor="?attr/colorPrimary"
+            android:textColor="#A0522D"
             android:textStyle="bold" />
     </LinearLayout>
 

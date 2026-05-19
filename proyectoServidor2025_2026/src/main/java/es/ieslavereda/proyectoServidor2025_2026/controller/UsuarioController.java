@@ -31,7 +31,6 @@ public class UsuarioController {
 
         return usuarioService.getByIdentifier(identifier)
                 .map(usuario -> {
-
                     if (usuario.getPasswordHash().equals(password)) {
                         return ResponseEntity.ok(usuario);
                     } else {
@@ -49,7 +48,6 @@ public class UsuarioController {
         return usuarioService.getByIdentifier(identifier)
                 .map(usuario -> {
                     usuario.setPasswordHash(newPassword);
-
                     usuarioService.update(usuario.getId(), usuario);
                     return ResponseEntity.ok(usuario);
                 })
@@ -65,7 +63,6 @@ public class UsuarioController {
 
     @PostMapping
     public ResponseEntity<?> create(@RequestBody Usuario usuario) {
-
         if (usuarioService.getByIdentifier(usuario.getNombre()).isPresent()) {
             return ResponseEntity.status(HttpStatus.CONFLICT).body("El nombre de usuario ya está en uso");
         }

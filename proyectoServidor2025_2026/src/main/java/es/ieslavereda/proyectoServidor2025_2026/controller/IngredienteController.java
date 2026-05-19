@@ -10,7 +10,6 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/ingredientes")
-// Nota: cambia "*" por el dominio del frontend, ej: "http://localhost:4200"
 @CrossOrigin(origins = "*")
 public class IngredienteController {
 

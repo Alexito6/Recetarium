@@ -45,7 +45,7 @@ public class Connector {
         return null;
     }
 
-    public <T> T post(Class<T> clazz, T data, String path) throws Exception {
+    public <R, E> R post(Class<R> clazz, E data, String path) throws Exception {
         String url = Parameters.URL_API_BASE + path;
         String jsonObject = conversor.toJson(data);
 
@@ -56,6 +56,7 @@ public class Connector {
             return conversor.fromJson(jsonResponse, clazz);
         return null;
     }
+
 
     public <T> T put(Class<T> clazz, T data, String path) throws Exception {
         String url = Parameters.URL_API_BASE + path;

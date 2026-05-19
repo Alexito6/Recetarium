@@ -11,7 +11,7 @@ import lombok.*;
 @AllArgsConstructor
 @Builder
 @IdClass(FavoritoId.class)
-@ToString(exclude = {"usuario", "receta"}) // Evita bucles infinitos
+@ToString(exclude = {"usuario", "receta"})
 public class Favorito {
 
     @Id

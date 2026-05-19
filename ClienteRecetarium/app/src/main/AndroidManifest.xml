@@ -32,6 +32,15 @@
         <activity android:name=".CambiarPassword">
 
         </activity>
+        <activity android:name=".HomeActivity">
+
+        </activity>
+        <activity android:name=".DetailActivity">
+
+        </activity>
+        <activity android:name=".ConfigurarAlergiasActivity">
+
+        </activity>
 
     </application>
 

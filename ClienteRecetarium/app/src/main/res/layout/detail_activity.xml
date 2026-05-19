@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F9F7F2">
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="32dp">
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/imgDetalle"
+                android:layout_width="0dp"
+                android:layout_height="280dp"
+                android:contentDescription="Imagen de la receta"
+                android:scaleType="centerCrop"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:shapeAppearanceOverlay="@style/RoundedBottomCorners"
+                tools:srcCompat="@tools:sample/backgrounds/scenic" />
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/fabFavoritoDetalle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="24dp"
+                android:clickable="true"
+                android:contentDescription="Marcar como favorito"
+                android:focusable="true"
+                app:backgroundTint="#FFFFFF"
+                app:layout_constraintBottom_toBottomOf="@+id/imgDetalle"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/imgDetalle"
+                app:srcCompat="@drawable/star_border_bitmap" />
+
+            <TextView
+                android:id="@+id/tvTituloDetalle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="24dp"
+                android:layout_marginEnd="20dp"
+                android:text="Título de la Receta"
+                android:textColor="#2D1B08"
+                android:textSize="28sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/imgDetalle" />
+
+            <TextView
+                android:id="@+id/tvDescripcionDetalle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="Breve descripción de la receta..."
+                android:textColor="#5D4037"
+                android:textSize="16sp"
+                android:textStyle="italic"
+                app:layout_constraintEnd_toEndOf="@+id/tvTituloDetalle"
+                app:layout_constraintStart_toStartOf="@+id/tvTituloDetalle"
+                app:layout_constraintTop_toBottomOf="@+id/tvTituloDetalle" />
+
+            <LinearLayout
+                android:id="@+id/layoutDificultad"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                app:layout_constraintStart_toStartOf="@+id/tvDescripcionDetalle"
+                app:layout_constraintTop_toBottomOf="@+id/tvDescripcionDetalle">
+
+                <TextView
+                    android:id="@+id/lblDificultad"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Dificultad: "
+                    android:textColor="#5D4037"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
+
+                <RatingBar
+                    android:id="@+id/rbDificultadDetalle"
+                    style="?android:attr/ratingBarStyleSmall"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:numStars="5"
+                    android:stepSize="1.0"
+                    android:rating="0.0"
+                    android:isIndicator="true"
+                    android:progressTint="#FFC107"
+                    android:secondaryProgressTint="#EAE7E2" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/layoutDuracion"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                app:layout_constraintBottom_toBottomOf="@+id/layoutDificultad"
+                app:layout_constraintEnd_toEndOf="@+id/tvDescripcionDetalle"
+                app:layout_constraintTop_toTopOf="@+id/layoutDificultad">
+
+                <ImageView
+                    android:layout_width="16dp"
+                    android:layout_height="16dp"
+                    android:layout_marginEnd="6dp"
+                    android:contentDescription="Icono de tiempo"
+                    android:src="@drawable/outline_av_timer_24"
+                    app:tint="#5D4037" />
+
+                <TextView
+                    android:id="@+id/tvTiempoDetalle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="0 min"
+                    android:textColor="#5D4037"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <View
+                android:id="@+id/divider"
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_marginTop="16dp"
+                android:background="#EAE7E2"
+                app:layout_constraintEnd_toEndOf="@+id/tvDescripcionDetalle"
+                app:layout_constraintStart_toStartOf="@+id/tvDescripcionDetalle"
+                app:layout_constraintTop_toBottomOf="@+id/layoutDificultad" />
+
+            <TextView
+                android:id="@+id/lblIngredientes"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="Ingredientes"
+                android:textColor="#A0522D"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="@+id/tvDescripcionDetalle"
+                app:layout_constraintTop_toBottomOf="@+id/divider" />
+
+            <TextView
+                android:id="@+id/tvIngredientesDetalle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:lineSpacingExtra="6dp"
+                android:text="- Ingrediente 1\n- Ingrediente 2"
+                android:textColor="#2D1B08"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toEndOf="@+id/tvDescripcionDetalle"
+                app:layout_constraintStart_toStartOf="@+id/lblIngredientes"
+                app:layout_constraintTop_toBottomOf="@+id/lblIngredientes" />
+
+            <TextView
+                android:id="@+id/lblInstrucciones"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="28dp"
+                android:text="Preparación"
+                android:textColor="#A0522D"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="@+id/tvIngredientesDetalle"
+                app:layout_constraintTop_toBottomOf="@+id/tvIngredientesDetalle" />
+
+            <TextView
+                android:id="@+id/tvInstruccionesDetalle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:lineSpacingExtra="6dp"
+                android:text="Pasos de la preparación..."
+                android:textColor="#2D1B08"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toEndOf="@+id/tvIngredientesDetalle"
+                app:layout_constraintStart_toStartOf="@+id/lblInstrucciones"
+                app:layout_constraintTop_toBottomOf="@+id/lblInstrucciones" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
+</FrameLayout>

@@ -33,10 +33,22 @@ public class RecetaController {
     @GetMapping("/buscar")
     public ResponseEntity<List<Receta>> getRecetasByIngrediente(
             @RequestParam String ingrediente) {
-
         return ResponseEntity.ok(
                 recetaService.getByIngrediente(ingrediente)
         );
     }
-}
 
+    @GetMapping("/usuario/{usuarioId}")
+    public ResponseEntity<List<Receta>> getAllRecetasConFavoritos(@PathVariable Long usuarioId) {
+        return ResponseEntity.ok(recetaService.getAllParaUsuario(usuarioId));
+    }
+
+    @GetMapping("/buscar-por-ingrediente")
+    public ResponseEntity<List<Receta>> buscarPorIngrediente(
+            @RequestParam String ingrediente,
+            @RequestParam Long usuarioId) {
+
+        List<Receta> recetasFiltradas = recetaService.findByIngredienteNombre(ingrediente, usuarioId);
+        return ResponseEntity.ok(recetasFiltradas);
+    }
+}

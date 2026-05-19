@@ -6,8 +6,24 @@
     </style>
 
     <style name="RoundedImageView">
-        <item name="cornerSize">12dp</item>
+        <item name="cornerSize">16dp</item>
+    </style>
+
+    <style name="RoundedBottomCorners">
+        <item name="cornerSizeBottomLeft">32dp</item>
+        <item name="cornerSizeBottomRight">32dp</item>
+        <item name="cornerSizeTopLeft">0dp</item>
+        <item name="cornerSizeTopRight">0dp</item>
     </style>
 
     <style name="Theme.PruebaLogMeal" parent="Base.Theme.PruebaLogMeal" />
+
+    <style name="CustomBottomSheetDialog" parent="Theme.MaterialComponents.Light.BottomSheetDialog">
+        <item name="bottomSheetStyle">@style/CustomBottomSheetStyle</item>
+    </style>
+
+    <style name="CustomBottomSheetStyle" parent="Widget.Design.BottomSheet.Modal">
+        <item name="android:background">@android:color/transparent</item>
+    </style>
+
 </resources>

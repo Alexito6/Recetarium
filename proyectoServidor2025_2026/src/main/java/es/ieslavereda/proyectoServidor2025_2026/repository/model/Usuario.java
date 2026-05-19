@@ -45,7 +45,7 @@ public class Usuario {
             joinColumns = @JoinColumn(name = "usuario_id"),
             inverseJoinColumns = @JoinColumn(name = "alergia_id")
     )
-    @JsonIgnoreProperties("usuarios") // ESTO: Evita que al cargar el usuario, las alergias intenten cargar sus usuarios de nuevo
+    @JsonIgnoreProperties("usuarios")
     private List<Alergia> alergias;
 
     @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL)
